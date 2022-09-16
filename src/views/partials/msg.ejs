@@ -1,0 +1,11 @@
+<% if(msg == "success") {%>
+  <%msg_success.forEach(msg => {%>
+    <p class="alert alert-success"><%=msg%></p>
+  <%})%>
+<%}%>
+
+<% if(msg == "error") {%>
+  <%msg_error.forEach(msg => {%>
+    <p class="alert alert-danger"><%=msg%></p>
+  <%})%>
+<%}%>

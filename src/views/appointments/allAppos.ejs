@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <title>Document</title>
+</head>
+<body>
+  <%- include("../partials/nav")%>
+  <div class="container mt-4">
+    <h3 class="h1">Todas as consultas finalizadas</h3>
+
+    <% appos.forEach(appo => {%>
+      <div class="card mt-4">
+            <div class="card-header">
+              Paciente: <%=appo.patientName%> <a href="/paciente/<%=appo.patient%>" class="btn btn-outline-primary">Ver informações do paciente</a>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Tipo: <%=appo.type%></h5>
+              <h5 class="card-title">Descrição: <%=appo.description%></h5>
+              
+              <% if(appo.month <10) {%>
+                <p class="card-text">Dia: <%=appo.day%>/0<%=appo.month%></p>
+              <%}else {%>
+                <p class="card-text">Dia: <%=appo.day%>/<%=appo.month%></p>
+              <%}%>
+
+              <p class="card-text">Horário: <%=appo.start.getHours()%>:<%=appo.minutes%> </p>
+              
+                <!-- <a href="/consulta/<%=appo.id%>?_method=put" class="btn btn-outline-primary">Finalizar</a>
+                <a href="/remarcar/consulta/<%=appo.id%>" class="btn btn-outline-warning">Remarcar</a>
+                <a href="/consulta/<%=appo.id%>?_method=delete" class="btn btn-outline-danger">Cancelar</a>
+                <a href="/remarcar/consulta/<%=appo.id%>" class="btn btn-outline-warning">Remarcar</a>
+                <a href="/consulta/<%=appo.id%>?_method=delete" class="btn btn-outline-danger">Cancelar</a> -->
+            </div>
+      </div>
+      <br><br>
+    <%})%>
+    
+
+  </div>
+  
+
+</body>
+<%- include("../partials/scripts")%>
+</html>

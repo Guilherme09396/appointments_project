@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <title>Document</title>
+</head>
+<body>
+  <%- include("../partials/nav")%>
+  <div class="container mt-4">
+    <h3 class="h1">Todos os pacientes</h3>
+    <form action="/pacientes/pesquisa?_method=get" class="d-flex" role="search">
+      <input class="form-control me-2" id="search" name="search" type="search" placeholder="Pesquisar por pacientes..." aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+
+    <% patients.forEach(patient => {%>
+      <div class="card mt-4">
+            <div class="card-header">
+              Paciente: <%=patient.name%>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">E-mail: <%=patient.email%> </h5>
+              <h5 class="card-title">Cpf: <%=patient.cpf%></h5>
+              <h5 class="card-title">Telefone: <%=patient.telephone%></h5>
+              <h5 class="card-title">Cep: <%=patient.zipcode%></h5>
+              <h5 class="card-title">Rua: <%=patient.road%></h5>
+              <h5 class="card-title">Bairro: <%=patient.district%></h5>              
+              <a href="/paciente/<%=patient._id%>" class="btn btn-info">Ver paciente</a>
+            </div>
+      </div>
+      <br>
+    <%})%>
+    
+
+  </div>
+  
+
+</body>
+<%- include("../partials/scripts")%>
+</html>

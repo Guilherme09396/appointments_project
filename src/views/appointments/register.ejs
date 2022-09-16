@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <title>Document</title>
+</head>
+<body>
+  <%- include("../partials/nav")%>
+  <div class="container mt-4">
+    <%- include("../partials/msg", {msg: "error", msg_error: erros})%>
+    <h3 class="h1">Consulta</h3>
+  <form action="/consulta/paciente/<%=patient._id%>?_method=post" method="post">
+    <input type="text" name="patientName" id="name" placeholder="Nome do paciente" class="form-control" value="<%=patient.name%>" readonly>
+    <input type="email" name="email" id="email" placeholder="email@dominio.com" class="form-control" value="<%=patient.email%>" readonly>
+    <input type="text" name="cpf" id="cpf" placeholder="CPF (insira só os números)" class="form-control cpf" value="<%=patient.cpf%>" readonly>
+    <input type="text" name="type" id="type" placeholder="Tipo da consulta" class="form-control">
+    <input type="text" name="description" id="description" placeholder="Descrição" class="form-control">
+    <input type="date" name="date" id="date" class="form-control"class="form-control" required>
+    <input type="time" name="time" id="time" class="form-control" required>
+    <button class="btn btn-success mt-4">Cadastrar</button>
+  </form>
+  </div>
+  
+
+</body>
+<%- include("../partials/scripts")%>
+<script>
+    $('.cpf').mask('000.000.000-00', {reverse: true});
+</script>
+</html>

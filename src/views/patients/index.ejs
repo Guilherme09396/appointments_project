@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <title>Document</title>
+</head>
+<body>
+  <%- include("../partials/nav")%>
+
+  
+  <div class="container mt-4">
+    <%- include("../partials/msg", {msg: "success", msg_success: msg_success})%>
+    <div class="container text-center">
+      <div class="row align-items-start">
+        <div class="col">
+
+          <div class="card" style="width: 20rem;">
+            <div class="card-body">
+              <h5 class="card-title">Nova consulta</h5>
+              <p class="card-text">Paciente: <%=patient.name%></br>CPF: <%=patient.cpf%></br>E-mail: <%=patient.email%></p>
+              <a href="/consulta/paciente/<%=patient._id%>" class="btn btn-primary">Agendar nova consulta</a>
+            </div>
+          </div>   
+
+        </div>
+        <div class="col">
+
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">Consultas Marcadas</h5>
+              <% if(appointment == true) {%>
+                <p class="card-text">Próxima consulta: <%=appo.day%>/<%=appo.month%></br>Tipo: <%=appo.type%></br>Horário: <%=appo.start.getHours()%>:<%=appo.minutes%></p>
+                <a href="/consultas/paciente/<%=patient._id%>" class="btn btn-primary">Visualizar</a>
+                <%} else {%>
+                <p class="card-text">Próxima consulta: -</br>Tipo: -</br>Horário: -</p>
+                <button type="button" class="btn btn-primary" disabled data-bs-toggle="button">Visualizar</button>                          
+              <%}%>
+            </div>
+          </div>
+
+        </div>
+        <div class="col">
+
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">Perfil do paciente</h5>
+              <p class="card-text">Aperte aqui para visualizar o perfil do paciente</p><br>
+              <a href="/paciente/<%=patient._id%>/perfil" class="btn btn-primary">Visualizar</a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    
+    
+  </div>
+  
+
+</body>
+<%- include("../partials/scripts")%>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/lib/main.min.css">
+  <title>Document</title>
+</head>
+<body>
+  <%- include("partials/nav")%>
+
+  <div class="container mt-4">
+    <%- include("./partials/msg", {msg: "error", msg_error})%>
+    <%- include("./partials/msg", {msg: "success", msg_success})%>
+  </div>
+
+  <div id="calendar" class="mt-4"></div>
+  
+</body>
+<%- include("partials/scripts")%>
+<script src="/lib/main.min.js"></script>
+
+<script>
+  const idCalendar = document.getElementById("calendar");
+  const calendar = new FullCalendar.Calendar(idCalendar, {
+    initialView: 'dayGridMonth',
+    headerToolbar: {
+    right: 'today prev next',
+    center: 'title',
+    left: 'dayGridMonth,timeGridWeek,listWeek'
+    },
+    locale: "pt-br",
+    events: "/consultas/calendario",
+    eventClick: function(info) {
+      window.location.href = `/consulta/${info.event.id}`
+  }
+});
+
+  calendar.render()
+</script>
+</html>
